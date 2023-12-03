@@ -1,4 +1,4 @@
-package bbdd;
+package es.psp.modelo;
 
 import java.io.Serializable;
 
