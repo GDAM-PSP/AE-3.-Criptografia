@@ -27,6 +27,7 @@ public class Cifrado {
 		return mensaje;
 	}
 
+	// METODO PARA CIFRAR STRING AES
 	public void cifrar(String frase) {
 		try {
 			// Generador de claves simetricas AES

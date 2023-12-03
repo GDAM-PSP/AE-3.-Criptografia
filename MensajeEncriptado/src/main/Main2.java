@@ -9,6 +9,8 @@ import cifrado.Cifrado;
 
 public class Main2 {
 	public static void main(String args[]) {
+
+		// DECLARACION DE VARIABLES INICIALES
 		boolean sesion = false;
 		int intentos = 3;
 		String user;
@@ -16,6 +18,15 @@ public class Main2 {
 		UsuarioImp userz = new UsuarioImp();
 		Cifrado cfr = new Cifrado();
 		Scanner sc = new Scanner(System.in);
+
+		/**
+		 * 1º-EL PROGRAMA CARGARA 3 USUARIOS EN MEMORIA. 2º-A CONTINUACION CREARÁ UN
+		 * HASH POR CADA CONTRASEÑA DE LOS USUARIOS GUARDADOS. 
+		 * 3º-VALIDA SI EL USUARIO Y CONTRASEÑA INTRODUCIDO COMO TEXTO NO COINCIDE CON LOS ANTERIORES, SE DISPONDRÁ
+		 * DE UN CONTADOR QUE DISMINUYA LOS INTENTOS SI EL USUARIO O CONTRASEÑA NO ES VALIDO.
+		 * 4º- EJECUCION DEL PROGRAMA PRINCIPAL
+		 * 
+		 **/
 
 		// CARGAMOS USUARIOS EN MEMORIA
 		userz.cargarUsuarios();

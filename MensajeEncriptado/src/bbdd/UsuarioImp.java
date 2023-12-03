@@ -74,7 +74,7 @@ public class UsuarioImp {
 		return false;
 	}
 
-	// SE ACTUALIZA USUARIO
+	// SE ACTUALIZA LA CONTRASEÑA DEL USUARIO GUARDADO EN MEMORIA POR EL HASH
 	public boolean updateUsuario(Usuario user) {
 		for (int i = 0; i < usuarios.size(); i++) {
 			if (usuarios.get(i).getUsuario().equals(user.getUsuario())) {
