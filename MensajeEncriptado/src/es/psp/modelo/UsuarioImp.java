@@ -1,19 +1,20 @@
-package bbdd;
+package es.psp.modelo;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
-import cifrado.Cifrado;
+import es.psp.crypto.Hasheado;
 
 public class UsuarioImp {
+	
+	//Inicializamos la clase hasheadora
+	Hasheado hasheador = new Hasheado();
 
 	// SE GENERA UN ARRAYLIST DE USUARIOS PARA CARGARLOS EN MEMORIA
-
 	ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-	Usuario user1 = new Usuario("admin", "hola");
-	Usuario user2 = new Usuario("demo", "5678");
-	Usuario user3 = new Usuario("fake", "asdf");
-	Cifrado cifr;
+	Usuario user1 = new Usuario("admin", "admin");
+	Usuario user2 = new Usuario("usuario", "usuario");
+	Usuario user3 = new Usuario("felix", "felix");
 
 	public UsuarioImp() {
 	}
@@ -34,17 +35,15 @@ public class UsuarioImp {
 	}
 
 	// CREAMOS HASH DE LAS CONTRASEÑAS DE USUARIOS EN MEMORIA
-
 	public void cifrarPassword() {
-		cifr = new Cifrado();
-		String mensaje1;
+		String hashPass;
 		System.out.println("**  CIFRANDO CONTRASEÑAS DE LOS USUARIOS....  **");
 		System.out.println("");
-		for (Usuario us : usuarios) {
+		for (Usuario usuario : usuarios) {
 			try {
-				mensaje1 = cifr.generarHash(us.getPassword());
-				us.setPassword(mensaje1);
-				updateUsuario(us);
+				hashPass = hasheador.generarHash(usuario.getPassword());
+				usuario.setPassword(hashPass);
+				updateUsuario(usuario);
 			} catch (NoSuchAlgorithmException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -56,7 +55,7 @@ public class UsuarioImp {
 	public boolean validarDatos(String user, String password) {
 		String hashPassword;
 		try {
-			hashPassword = cifr.generarHash(password);
+			hashPassword = hasheador.generarHash(password);
 			for (Usuario us : usuarios) {
 				if (us.getUsuario().equals(user)) {
 					if (us.getPassword().equals(hashPassword)) {
@@ -79,7 +78,7 @@ public class UsuarioImp {
 		for (int i = 0; i < usuarios.size(); i++) {
 			if (usuarios.get(i).getUsuario().equals(user.getUsuario())) {
 				usuarios.get(i).setPassword(user.getPassword());
-				System.out.println("La contraseña del usuario " + user.getUsuario() + " ha sido cambiada/Hash:");
+				System.out.println("La contraseña del usuario " + user.getUsuario() + " ha sido cambiada.");
 				System.out.println("");
 				return true;
 			}
